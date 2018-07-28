@@ -1,0 +1,27 @@
+<ion-header xmlns:size="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>Markdown Guide</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <div *ngFor="let h of content; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+      <h5>
+        <ion-icon [name]="isGroupShown(i) ? 'arrow-dropup' : 'arrow-dropdown' "></ion-icon>
+        <strong>{{h.title}}</strong>
+      </h5>
+      <div *ngIf="isGroupShown(i)" >
+        <ion-card>
+          <ion-card-content innerHtml={{h.cardContent}}></ion-card-content>
+        </ion-card>
+        <div padding innerHtml={{h.displayContent}}></div>
+      </div>
+      <hr id="itemList">
+    </div>
+  </ion-list>
+</ion-content>

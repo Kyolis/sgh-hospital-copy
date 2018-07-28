@@ -1,0 +1,16 @@
+page-hospital-management {
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+
+    * {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .flex-left {
+      flex-grow: 1;
+    }
+
+  }
+}

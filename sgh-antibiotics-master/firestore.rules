@@ -1,0 +1,49 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+  	function isSuperadmin() {
+  		return exists(/databases/$(database)/documents/users/$(request.auth.uid)/roles/superadmin);
+		}
+
+    match /hospitals/{document=**} {
+      allow read;
+    }
+
+    match /{document=**} {
+    	allow read, write: if isSuperadmin();
+    }
+
+    match /hospitals/{hospitalId} {
+      function isHospitalAdmin() {
+    		return exists(/databases/$(database)/documents/users/$(request.auth.uid)/roles/$(hospitalId))
+    	}
+
+    	allow read, write: if isHospitalAdmin();
+    }
+
+    match /hospitals/{hospitalId}/{document=**} {
+      function isHospitalAdmin() {
+    		return exists(/databases/$(database)/documents/users/$(request.auth.uid)/roles/$(hospitalId))
+    	}
+
+    	allow read, write: if isHospitalAdmin();
+    }
+
+    match /users/{userId}/roles/{documents=**} {
+          allow read: if request.auth.uid == userId;
+    }
+
+    match /users/{userId}/settings/{documents=**} {
+          allow read, write: if request.auth.uid == userId;
+    }
+
+    match /guides/{document=**} {
+    			allow read;
+    }
+
+    match /about/{document=**} {
+    			allow read;
+    }
+
+  }
+}

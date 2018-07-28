@@ -1,0 +1,49 @@
+page-calculator {
+  .errorMsg{
+    color: red;
+    font-size: 15px;
+    margin-left: 15px;
+  }
+
+  ion-label{
+    width: 100%;
+    overflow: visible;
+  }
+
+  span.label{
+    float: left;
+    font-size: 130%;
+    margin-left: 1%;
+    margin-top: 1%;
+  }
+
+  #cgeUnit, #ibwUnit, #abwUnit, #bsaUnit, .value{
+    color: cornflowerblue;
+    float: right;
+    font-size: 130%;
+    margin-top: 1%;
+  }
+
+  #abwNote{
+    color: dimgrey;
+    white-space: normal;
+  }
+
+  .inputItem{
+    margin-left: 0;
+  }
+
+  ion-card-content{
+    color: cornflowerblue;
+  }
+
+  .checkboxInput{
+    margin-left: 10px;
+    margin-right: 0;
+    padding: 0;
+  }
+
+  ion-list{
+    width: 100%;
+  }
+}

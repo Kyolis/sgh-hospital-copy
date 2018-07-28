@@ -1,0 +1,47 @@
+administration-info {
+  .headline-section {
+    font-size: 170%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .content-section {
+    margin-top: 30px;
+  }
+
+  .section-headline {
+    font-size: 140%;
+  }
+
+  .sub-section-headline {
+    font-size: 130%;
+    margin-left: 10px;
+  }
+
+  .sub-section {
+    margin-left: 20px;
+    font-size: 120%;
+    font-weight: bold;
+    color: #999999;
+  }
+
+  .comment-section {
+    border: 3px solid #c4912d;
+    padding: 10px;
+    background-color: #ffffa5;
+    color: #c4912d;
+    font-weight: bolder;
+  }
+
+  .ref-button {
+    min-height: 3.6em;
+    height: 100%;
+    overflow: hidden;
+    margin-right: 10px;
+  }
+
+  .button-inner {
+    flex-flow: column;
+  }
+}

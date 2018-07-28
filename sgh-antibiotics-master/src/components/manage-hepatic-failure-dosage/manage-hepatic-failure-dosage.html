@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>Hepatic Failure Dosage Management</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="manage-headline">Dosage type</div>
+  <ion-list radio-group [(ngModel)]="dosage.type">
+
+    <ion-item>
+      <ion-label>A</ion-label>
+      <ion-radio value="{{dosageType.A}}"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>B</ion-label>
+      <ion-radio value="{{dosageType.B}}"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>C</ion-label>
+      <ion-radio value="{{dosageType.C}}"></ion-radio>
+    </ion-item>
+
+    <div class="manage-headline" style="margin-top: 15px">Dosage information</div>
+    <ion-item>
+      <ion-input [(ngModel)]="dosage.value" placeholder="Dosage information text"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <div class="button-container">
+    <button class="inline-button" color="danger" ion-button (click)="dismiss()">Cancel</button>
+    <button class="inline-button" ion-button icon-start (click)="save()">
+      <ion-icon name="checkmark"></ion-icon>
+      Save
+    </button>
+  </div>
+</ion-footer>

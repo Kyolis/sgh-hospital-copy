@@ -1,0 +1,36 @@
+<ion-header style="white-space: normal;">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="infection">{{infection.name}}</ion-title>
+
+    <ion-buttons end>
+      <div *ngIf="session.selectedDb === 'staging'">
+        <ion-label class="toolbar-item">Edit</ion-label>
+        <ion-toggle [(ngModel)]="session.isEditView"
+                    [checked]="session.isEditView"
+                    [disabled]="session.selectedDb === 'live'"
+                    class="toolbar-item"></ion-toggle>
+      </div>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment *ngIf="conditions" [(ngModel)]="selectedConditionName">
+      <ion-segment-button *ngFor="let condition of conditions" value="{{condition.name}}">
+        {{condition.name}}
+      </ion-segment-button>
+      <ion-segment-button *ngIf="session.isEditView" (click)="showAddConditionAlert()">
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <condition *ngIf="conditions && conditions.length > 0" [condition]="selectedCondition" [infectionId]="infection._id"
+             (conditionChange)="conditionChange($event)"></condition>
+</ion-content>
+
+

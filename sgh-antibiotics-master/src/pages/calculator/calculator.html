@@ -1,0 +1,161 @@
+<ion-header>
+  <ion-navbar>
+   <button ion-button menuToggle>
+     <ion-icon name="menu"></ion-icon>
+   </button>
+    <ion-title>Calculator</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list *ngFor="let calculator of calculators; let i=index">
+      <ion-item *ngIf="i == 0 || !cgeOnly">
+        <h2 (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+          <ion-icon [name]="isGroupShown(i) ? 'arrow-dropup' : 'arrow-dropdown'"></ion-icon>
+          <strong>{{calculator}}</strong>
+        </h2>
+      </ion-item>
+      <form [formGroup]="calculatorForm" (input)="inputChange()">
+        <div *ngIf="isGroupShown(i)">
+        <!--Cockroft-Gault Equation-->
+        <div *ngIf="i == 0">
+          <ion-list>
+            <ion-item class="inputItem">
+              <ion-label>Gender</ion-label>
+              <ion-select interface="action-sheet" [(ngModel)]="gender" (ionChange)="inputChange()" formControlName="gender">
+                <ion-option value="Male">Male</ion-option>
+                <ion-option value="Female">Female</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item class="inputItem">
+              <ion-label floating>Age (years)</ion-label>
+              <ion-input type="number" pattern="[0-9]*" [(ngModel)]="age" formControlName="age"></ion-input>
+            </ion-item>
+            <ion-label class="errorMsg" *ngIf="ageError">{{ageError}}</ion-label>
+            <ion-item class="inputItem">
+              <ion-label floating>Weight (kg)</ion-label>
+              <ion-input type="number" [(ngModel)]="weight" formControlName="weight"></ion-input>
+            </ion-item>
+            <ion-label class="errorMsg" *ngIf="weightError">{{weightError}}</ion-label>
+            <ion-item class="inputItem">
+              <ion-label floating>Serum Creatinine (mcmol/L)</ion-label>
+              <ion-input type="number" [(ngModel)]="scr" formControlName="scr"></ion-input>
+            </ion-item>
+            <ion-label class="errorMsg" *ngIf="scrError">{{scrError}}</ion-label>
+            <div>
+              <span class="label" *ngIf="cge && cge > 0">Value:</span>
+              <span id="cgeUnit" *ngIf="cge && cge > 0"> {{ cge | number: '1.2-2'}} mL/min</span>
+            </div>
+          </ion-list>
+        </div>
+
+        <!--Ideal Body Weight-->
+        <div *ngIf="i == 1">
+          <ion-list>
+            <ion-item class="inputItem">
+              <ion-label>Gender</ion-label>
+              <ion-select interface="action-sheet" [(ngModel)]="gender" (ionChange)="inputChange()" formControlName="gender">
+                <ion-option value="Male">Male</ion-option>
+                <ion-option value="Female">Female</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item class="inputItem">
+              <ion-label floating>Height (cm)</ion-label>
+              <ion-input type="number" [(ngModel)]="height" formControlName="height"></ion-input>
+            </ion-item>
+            <ion-label class="errorMsg" *ngIf="heightError">{{heightError}}</ion-label>
+            <div>
+              <span class="label" *ngIf="ibw && ibw > 0">Value:</span>
+              <span id="ibwUnit" *ngIf="ibw && ibw > 0"> {{ ibw | number: '1.2-2'}} kg</span>
+            </div>
+          </ion-list>
+        </div>
+
+        <!--Adjusted Body Weight-->
+        <div *ngIf="i == 2">
+          <ion-list>
+            <ion-item class="inputItem">
+              <ion-label floating>Height (cm)</ion-label>
+              <ion-input type="number" [(ngModel)]="height" formControlName="height"></ion-input>
+            </ion-item>
+            <ion-label class="errorMsg" *ngIf="heightError">{{heightError}}</ion-label>
+            <ion-item class="inputItem">
+              <ion-label floating>Weight (kg)</ion-label>
+              <ion-input type="number" [(ngModel)]="weight" formControlName="weight"></ion-input>
+            </ion-item>
+            <ion-label class="errorMsg" *ngIf="weightError">{{weightError}}</ion-label>
+            <div>
+              <span id="abwNote" *ngIf="!abw">Note: Adjusted body weight is only calculated when Actual body weight > 30% of Ideal body weight.</span>
+              <span class="label" *ngIf="abw && abw > 0">Value:</span>
+              <span id="abwUnit" *ngIf="abw && abw > 0"> {{ abw | number: '1.2-2'}} kg</span>
+            </div>
+          </ion-list>
+        </div>
+
+        <!--Body Surface Area-->
+        <div *ngIf="i == 3">
+          <ion-list>
+            <ion-item class="inputItem">
+              <ion-label floating>Height (cm)</ion-label>
+              <ion-input type="number" [(ngModel)]="height" formControlName="height"></ion-input>
+            </ion-item>
+            <ion-label class="errorMsg" *ngIf="heightError">{{heightError}}</ion-label>
+            <ion-item class="inputItem">
+              <ion-label floating>Weight (kg)</ion-label>
+              <ion-input type="number" [(ngModel)]="weight" formControlName="weight"></ion-input>
+            </ion-item>
+            <ion-label class="errorMsg" *ngIf="weightError">{{weightError}}</ion-label>
+            <div>
+              <span class="label" *ngIf="bsa && bsa > 0">Value:</span>
+              <span id="bsaUnit" *ngIf="bsa && bsa > 0"> {{ bsa | number: '1.2-2'}} m<sup>2</sup></span>
+            </div>
+          </ion-list>
+        </div>
+
+        <!--CURB-65-->
+        <div *ngIf="i == 4">
+          <ion-list>
+            <ion-item class="checkboxInput">
+              <ion-checkbox (ionChange)="calculateCURB($event)"></ion-checkbox>
+              <ion-label>Confusion</ion-label>
+            </ion-item>
+            <ion-item class="checkboxInput">
+              <ion-checkbox (ionChange)="calculateCURB($event)"></ion-checkbox>
+              <ion-label>Urea > 7 mmol/L</ion-label>
+            </ion-item>
+            <ion-item class="checkboxInput">
+              <ion-checkbox (ionChange)="calculateCURB($event)"></ion-checkbox>
+              <ion-label>RR >= 30</ion-label>
+            </ion-item>
+            <ion-item class="checkboxInput">
+              <ion-checkbox (ionChange)="calculateCURB($event)"></ion-checkbox>
+              <ion-label>SBP <= 90 mm Hg OR DBP <= 60 mm Hg</ion-label>
+            </ion-item>
+            <ion-item class="checkboxInput">
+              <ion-checkbox (ionChange)="calculateCURB($event)"></ion-checkbox>
+              <ion-label>Age > 65</ion-label>
+            </ion-item>
+          </ion-list>
+          <ion-card>
+            <ion-card-content style="font-size: 20px;">
+              Points = {{ count }}
+              <br>
+              {{ CURBdesc }}
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+      </form>
+    </ion-list>
+</ion-content>
+
+<ion-footer *ngIf="cgeOnly">
+  <div class="button-container">
+    <button class="inline-button" color="danger" ion-button (click)="dismiss()">Cancel</button>
+    <button class="inline-button" ion-button icon-start (click)="returnCge()"
+            [disabled]="!(cge && cge > 0)">
+      <ion-icon name="checkmark"></ion-icon>
+      Use Value
+    </button>
+  </div>
+</ion-footer>

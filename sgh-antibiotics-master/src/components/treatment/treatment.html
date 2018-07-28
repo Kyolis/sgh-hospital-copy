@@ -1,0 +1,28 @@
+<div *ngIf="treatment" class="treatment-container">
+  <div *ngIf="treatment.header && treatment.header != ''" class="treatment-header-section">
+    <div class="treatment-header">
+      {{treatment.header}}
+    </div>
+    <div *ngIf="session.isEditView">
+      <button ion-button color="primary" round small icon-only (click)="showUpdateTreatmentAlert(treatment)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button color="danger" round small icon-only (click)="showDeleteTreatmentAlert(treatment)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </div>
+  </div>
+  <br>
+  <div *ngIf="treatment.subheader && treatment.subheader != ''" class="treatment-subheader">
+    {{treatment.subheader}}
+  </div>
+  <br>
+
+  <div *ngFor="let adminInfoTreatment of adminInfoTreatments">
+    <antibiotic-ref [adminInfoTreatment]="adminInfoTreatment" [treatmentId]="treatment._id"
+                    [conditionId]="condition._id" [infectionId]="infectionId"></antibiotic-ref>
+  </div>
+  <button *ngIf="session.isEditView" ion-item style="text-align: center" (click)="showManageAntibioticRefAlert()">
+    <ion-icon name="add-circle" color="primary"></ion-icon>
+  </button>
+</div>

@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "sgh-antibiotics": "sgh-antibiotics",
+    "staging": "sgh-software-testing",
+    "live": "sgh-antibiotics"
+  }
+}

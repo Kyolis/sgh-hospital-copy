@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sgh-antibiotics",
+  "private_key_id": "49a1d9f9be277936cbefa2c9c3dad585cc45e6ed",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDhkJlgx0nifaKW\ntY7Anx3M+squ6nFggMR7YN/bTYMf4iM0nzrRHruwi04RyQBE9hjqhUnf0LgRC/iA\n+6jBpIdbiDT2MbRzWb1NFGA1lkXXwG3aKBnvbnMuv1FhvbB/yBvQX7EWkD922yAg\nPjf6QY/RH3Cnw4jP7fsdESJAr0yFcPbwSm2jDuyeDFajKRZPystqcR+osCzufEAJ\naHQ43Fb86z+edQHKbFypkGg2QYOTifby64Jb31JP+T8MPBg0hB4HuJHQ19fcZjKO\nDmhOrlLgQkQ3ai1T1vC1LmnZ4PAviMmWpEbg7JQfLmGXUdVB680dDXWg0tgr5GO5\n59JtP62vAgMBAAECggEAb7CM8encQOUa0+tUozZmqC/qmpAF0dYQ9FK0pb+M1QXB\njvXlRtUj9LgV0SKpGnyNO9sCCGwuKGq4Aw4ZssDIMV+RcfKMuq1N2dPkC8S8Eqf6\n/RHsPa2AJT6ginhF5A/vDc/EPTrx4eWA09ZbG3TJRLB/tOJSZTseo3bvcf4bMtsd\nmvgCty9WvCwco8j9xJjwUsbQfizVbCMXlkbRUEez4UVNICC7xz58GtJ4kjdzwNFj\nVBhsqXQipvkwLJO4LVxdF2sKOfRacfS4mfGRSTVBj/UH3MeJYzCvazGXQEdNvSo/\nJ7OB0aj56ibUZTCdP+RFWs4EAQmYc9ESnVIl/4X6aQKBgQD4+lYwePdUAfIhtIeX\n60sfdugBtI1SdmlINL9FcTUlBHI0rM/hvPJShZFheGgM5qrImfEyxPK5rEsCjmz3\n720gSMnXy/cF+o+uYnNhO4Zp7FzScj5xDjE8d7834L/wCyhRoZu6zvjdYQ9vgvK/\nqGErAp/HHkABPpYXOFZt5C/qTQKBgQDn7TdeCyDNkj4YL6U+k0YZh3s9Cyc0C/o7\nHpFouPTDwZK3vLhV0KrqfP5IHF19tcDlDHtbqxTsTKcGVikltGOMcMLeHEWYqYKv\ncXGmI4lk1kbnfxtriDx4Z31UFd8S1bu7VgFhR6UY5PGases91CjDOk/nJLk2/GCS\n5x9fhUx96wKBgQDEnpVwJCdVrU+09GdcPtGNoI5pwlcUdzR/dEBUq6lHeXJjTNHC\nOD+5kYeUzMyG26alUoTbDhONM5XtB+LgDbFFHJZhl86VZyEOmur5L1Pf1GwdOWE8\nUPPrB7n3e8K342fMx24/IXIBCcRx0Jy5ZFSP7buWOLpdATrwTWpb0CdSxQKBgD4N\n01WfRpyaN3EDNoRipUvpWwj/NfMQDVjKGf/aFOtXnKj6npufZEuvO94RcNZUzhK6\n3zqssMF01O+2F/ZVqJkIBqulBt4M5MGKae0Y7wcC6h/Ae5au8fcJQZhA7dm9RCig\nn2fm4n6hqx9H4Xg+jtWFgaGHyuKybiiAHH3TTZ8XAoGANeX0zmf1oyh9BIIW7AWV\n+YCoxJD6zyOo0rjAh1NYzaWMPqz/vhF5hiVEphMyWWqhLqVBFOpTzI8xKmm3dLO/\nlcftz6c4JBPAGehJ2h/P81tCfgzimVZH8/TSGkwJxaGUVQVa3N+CVHJjsHR5s6ow\nSA7Meg7H4giXFzL+gEE+RcI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sgh-antibiotics-importer@sgh-antibiotics.iam.gserviceaccount.com",
+  "client_id": "112590846667584193038",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sgh-antibiotics-importer%40sgh-antibiotics.iam.gserviceaccount.com"
+}

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>Monitoring Parameters</ion-title>
+    <ion-buttons end>
+      <span class="toolbar-item" *ngIf="session.selectedDb === 'staging'">
+        <ion-label class="toolbar-item">Edit</ion-label>
+        <ion-toggle [(ngModel)]="session.isEditView"
+                    [checked]="session.isEditView"
+                    [disabled]="session.selectedDb === 'live'"
+                    class="toolbar-item"></ion-toggle>
+      </span>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="administrationInfo" padding>
+  <edit-text
+    [editMode]="session.isEditView" [editText]="administrationInfo.monitoringParameters"
+    [editTextSettings]="editTextSettings" (debouncedTextChange)="monitoringParametersChanged($event)"></edit-text>
+</ion-content>

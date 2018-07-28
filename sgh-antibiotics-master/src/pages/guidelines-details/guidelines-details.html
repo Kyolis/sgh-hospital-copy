@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{guideline.name}}</ion-title>
+    <ion-buttons end>
+      <span *ngIf="session.selectedDb === 'staging'">
+        <ion-label class="toolbar-item">Edit</ion-label>
+        <ion-toggle [(ngModel)]="session.isEditView"
+                        [checked]="session.isEditView"
+                        [disabled]="session.selectedDb === 'live'"
+                        class="toolbar-item"></ion-toggle>
+      </span>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <edit-text [editText]="this.guideline.text" [editMode]="session.isEditView"
+             (saveClicked)="saveMarkdownChanges($event)" (textChange)="textChange($event)"></edit-text>
+</ion-content>

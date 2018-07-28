@@ -1,0 +1,35 @@
+<ion-header xmlns:size="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>Edit Infection</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item *ngIf="infectionCategories">
+    <ion-label>Infection Category</ion-label>
+    <ion-select [(ngModel)]="selectedInfectionCategoryId">
+      <ion-option value="miscellaneous">Miscellaneous</ion-option>
+      <ion-option *ngFor="let infectionCategory of infectionCategories" value="{{infectionCategory._id}}">
+        {{infectionCategory.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Infection name</ion-label>
+    <ion-input [(ngModel)]="infectionName"></ion-input>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <div class="button-container">
+    <button class="inline-button" color="danger" ion-button (click)="dismiss()">Cancel</button>
+    <button class="inline-button" ion-button icon-start (click)="save()"
+            [disabled]="selectedInfectionCategoryId === '' || infectionName === ''">
+      <ion-icon name="checkmark"></ion-icon>
+      Save
+    </button>
+  </div>
+</ion-footer>

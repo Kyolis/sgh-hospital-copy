@@ -1,0 +1,8 @@
+{
+  "name": "sgh-antibiotics",
+  "app_id": "com.firebaseapp.sgh-antibiotics",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

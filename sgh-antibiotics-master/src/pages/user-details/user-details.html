@@ -1,0 +1,42 @@
+<!--
+  Generated template for the UserDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{user.email}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    E-Mail
+    <ion-note item-end><strong>{{user.email}}</strong></ion-note>
+  </ion-item>
+
+  <ion-list>
+    <ion-list-header>Roles</ion-list-header>
+    <ion-item *ngIf="session.isSuperadmin">
+      <ion-label><strong>Superadmin</strong></ion-label>
+      <ion-toggle color="danger" [checked]="isUserSuperadmin" [disabled]="isViewingSelf || !session.isSuperadmin"
+                  [(ngModel)]="isUserSuperadmin"></ion-toggle>
+    </ion-item>
+
+    <ion-item *ngIf="session.isAdmin">
+      <ion-label>Hospital Admin</ion-label>
+      <ion-toggle [checked]="isUserHospitalAdmin" [disabled]="isViewingSelf || !session.isSuperadmin"
+                  [(ngModel)]="isUserHospitalAdmin"></ion-toggle>
+    </ion-item>
+
+    <ion-item *ngIf="isViewingSelf">
+      <i>Roles are not assigneable to oneself.</i>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

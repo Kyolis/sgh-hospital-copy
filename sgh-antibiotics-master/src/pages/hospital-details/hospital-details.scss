@@ -1,0 +1,74 @@
+page-hospital-details {
+
+  ion-label {
+    white-space: normal;
+  }
+
+  span.label {
+    float: left;
+    width: 50%;
+  }
+
+  span.value {
+    float: left;
+    width: 50%;
+  }
+
+  .text-input-md {
+    margin: 0;
+  }
+  .select-md {
+    padding: 0;
+  }
+
+  .input-ios[clearInput] .text-input, .select-ios {
+    padding: 0;
+  }
+
+  #title {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 50%;
+    display: inline-block;
+  }
+
+  .flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .left {
+    margin-right: 15px;
+  }
+
+  .middle {
+    flex-grow: 1;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+  }
+
+  .selectedRelease {
+    background-color: #bebebe;
+    color: white;
+  }
+
+  #hospitalName {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 5px 0px 25px 25px;
+  }
+
+  #editNameBtn {
+    margin-left: 25px;
+  }
+
+  .custom-label {
+    font-size: medium;
+  }
+}

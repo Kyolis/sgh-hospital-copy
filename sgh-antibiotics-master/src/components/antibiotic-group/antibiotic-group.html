@@ -1,0 +1,43 @@
+<ion-item *ngIf="(antibiotics && antibiotics.length > 0) || (searchTerms.length == 0) || (antibiotics.length > 0)">
+  <span>
+    <div class="clickable" (click)="onAntibioticGroupClick()" style="display: inline-block;">
+      <!--name group-->
+      <h2>
+        <ion-icon [name]="expanded ? 'arrow-dropup' : 'arrow-dropdown'"></ion-icon>
+        <strong *ngIf="!antibioticGroup.isMiscellaneous">{{antibioticGroup.groupName}}</strong>
+        <i *ngIf="antibioticGroup.isMiscellaneous">{{antibioticGroup.groupName}}</i>
+      </h2>
+    </div>
+    <div *ngIf="session.isEditView && !antibioticGroup.isMiscellaneous"
+         style="display: inline-block; float: right; margin: 0;" item-end>
+      <button ion-button color="primary" round (click)="showEditAntibioticsGroupAlert(antibioticGroup)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button color="danger" round (click)="showDeleteAntibioticsGroupAlert(antibioticGroup)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </div>
+  </span>
+  <div *ngIf="expanded">
+    <ion-list >
+      <!--name items-->
+      <ion-item *ngFor="let antibiotic of antibiotics">
+        <span class="flex-container">
+          <span class="flex-left clickable" (click)="onAntibioticClick(antibiotic)">{{antibiotic.name}}</span>
+          <button class="flex-middle" ion-button color="primary" round *ngIf="session.isEditView"
+                  (click)="showEditAntibioticAlert(antibiotic)">
+            <ion-icon name="create"></ion-icon>
+          </button>
+          <button class="flex-right" ion-button color="danger" round *ngIf="session.isEditView"
+                  (click)="showDeleteAntibioticAlert(antibiotic)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </span>
+      </ion-item>
+      <button *ngIf="session.isEditView" ion-item style="text-align: center"
+              (click)="showAddAntibioticAlert(antibioticGroup)">
+        <ion-icon name="add-circle" color="primary"></ion-icon>
+      </button>
+    </ion-list>
+  </div>
+</ion-item>

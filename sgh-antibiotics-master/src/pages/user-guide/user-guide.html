@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>User Guide</ion-title>
+    <ion-buttons end>
+      <span class="toolbar-item" *ngIf="session.isSuperadmin">
+        <ion-label class="toolbar-item">Edit</ion-label>
+        <ion-toggle [(ngModel)]="isEditView"
+                    [checked]="isEditView"
+                    [disabled]="false"
+                    class="toolbar-item"></ion-toggle>
+      </span>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <edit-text *ngIf="userGuide"
+             [editMode]="isEditView" [editText]="userGuide.text"
+             [editTextSettings]="editTextSettings" (debouncedTextChange)="textChanged($event)"></edit-text>
+</ion-content>

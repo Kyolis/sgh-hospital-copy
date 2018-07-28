@@ -1,0 +1,29 @@
+condition {
+  .content-section {
+    margin-top: 30px;
+  }
+
+  .headline-section {
+    font-size: 170%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .section-headline {
+    font-size: 140%;
+  }
+
+  .sub-section-headline {
+    font-size: 130%;
+    margin-left: 10px;
+  }
+
+  .sub-section {
+    margin-left: 20px;
+    font-size: 120%;
+    font-weight: bold;
+    color: #999999;
+  }
+
+}

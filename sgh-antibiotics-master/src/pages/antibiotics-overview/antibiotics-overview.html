@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+
+    </button>
+    <ion-title>Antimicrobials</ion-title>
+
+    <ion-buttons end>
+      <div *ngIf="session.selectedDb === 'staging'">
+        <ion-label class="toolbar-item">Edit</ion-label>
+        <ion-toggle [(ngModel)]="session.isEditView"
+                    [checked]="session.isEditView"
+                    [disabled]="session.selectedDb === 'live'"
+                    class="toolbar-item"></ion-toggle>
+      </div>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="searchTerms" [showCancelButton]="shouldShowCancel" (ionInput)="onSearchInput()">
+  </ion-searchbar>
+  <ion-list>
+    <div *ngFor="let antibioticGroup of antibioticGroups">
+      <antibiotic-group
+        [antibioticGroup]="antibioticGroup"
+        [antibiotics]="antibiotics | filterAntibioticsByGroupId: antibioticGroup._id | filterAntibioticsByNameOrGroupName: searchTerms : antibioticGroup.groupName"
+        [searchTerms]="searchTerms"
+        (onAntibioticClicked)="openAntibioticDetails($event)"
+        (onAntibioticGroupClicked)="onAntibioticsGroupClicked($event)"></antibiotic-group>
+    </div>
+    <button *ngIf="session.isEditView" ion-item style="text-align: center" (click)="showAddAntibioticGroupAlert()">
+      <ion-icon name="add-circle" color="primary"></ion-icon>
+    </button>
+  </ion-list>
+</ion-content>

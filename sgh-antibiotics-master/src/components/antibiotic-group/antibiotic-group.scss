@@ -1,0 +1,15 @@
+antibiotic-group {
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .flex-left {
+    flex-grow: 1;
+  }
+
+  .flex-right {
+  }
+}

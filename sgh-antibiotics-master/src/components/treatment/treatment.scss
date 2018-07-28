@@ -1,0 +1,23 @@
+treatment {
+
+  .treatment-container {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .treatment-header {
+    font-size: 130%;
+    font-weight: bolder;
+  }
+
+  .treatment-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .treatment-subheader {
+    font-size: 120%;
+    font-weight: bold;
+  }
+}

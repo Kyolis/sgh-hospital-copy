@@ -1,0 +1,48 @@
+antibiotic-ref {
+
+  .admin-ref {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .admin-ref-antibiotic {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 120%;
+    font-weight: bold;
+    color: #999999;
+  }
+
+  .admin-ref-comment {
+    display: flex;
+    justify-content: center;
+    font-size: 110%;
+    font-weight: bold;
+    color: red;
+    margin-top: 10px;
+  }
+
+  .operator {
+    display: flex;
+    font-size: 220%;
+    font-weight: bolder;
+    justify-content: center;
+  }
+
+  .operator-optional {
+    margin-top: 60px;
+  }
+
+  .ref-button {
+    min-height: 3.6em;
+    height: 100%;
+    overflow: hidden;
+    margin-right: 10px;
+  }
+
+  .button-inner {
+    flex-flow: column;
+  }
+}

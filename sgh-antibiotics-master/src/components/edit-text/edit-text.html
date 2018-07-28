@@ -1,0 +1,53 @@
+<div *ngIf="!editMode" [innerHtml]="content"></div>
+<div *ngIf="editMode" class="edit-text-container">
+  <ion-buttons end>
+    <button *ngIf="editTextSettings.showResetButton" small [disabled]="!contentChanged" ion-button icon-start item-right
+            color="danger" (click)="presentResetAlert()">
+      <ion-icon name="refresh"></ion-icon>
+      Reset
+    </button>
+    <button *ngIf="editTextSettings.showSaveButton" small [disabled]="!contentChanged" ion-button icon-start item-right
+            (click)="save()">
+      <ion-icon name="checkmark"></ion-icon>
+      Save
+    </button>
+  </ion-buttons>
+  <div class="shortcut-container">
+    <ion-buttons *ngIf="editTextSettings.showShortcuts" class="shortcut-button-container">
+      <button clear small color="light" icon-only ion-button icon-start item-right (click)="insertMarkdown(header)">
+        <ion-icon name="medical"></ion-icon>
+      </button>
+      <button clear small color="light" icon-only ion-button icon-start item-right (click)="insertMarkdown(list)">
+        <ion-icon name="list"></ion-icon>
+      </button>
+      <button clear small color="light" ion-button icon-start item-right (click)="insertMarkdown(link)">
+        <ion-icon name="link"></ion-icon>
+      </button>
+      <button clear small color="light" ion-button icon-start item-right (click)="insertMarkdown(image)">
+        <ion-icon name="image"></ion-icon>
+      </button>
+      <button clear small color="light" ion-button icon-start item-right (click)="insertMarkdown(table)">
+        <ion-icon name="grid"></ion-icon>
+      </button>
+      <button clear small color="light" ion-button icon-start item-right (click)="insertMarkdown(blockquote)">
+        <ion-icon name="quote"></ion-icon>
+      </button>
+      <button clear small color="light" ion-button icon-start item-right (click)="insertMarkdown(inlineHtml)">
+        <ion-icon name="code"></ion-icon>
+      </button>
+      <button clear small color="light" ion-button icon-start item-right (click)="insertMarkdown(horizontalRule)">
+        <ion-icon name="remove"></ion-icon>
+      </button>
+      <button clear small color="light" ion-button icon-start item-right (click)="insertMarkdown(linebreak)">
+        <ion-icon name="return-right"></ion-icon>
+      </button>
+      <button class="info-button" *ngIf="editTextSettings.showInfo" clear small color="light" ion-button icon-start
+              item-right (click)="showInfo()">
+        <ion-icon name="md-information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </div>
+    <textarea #textInput
+      [(ngModel)]="text" caretPos (click)="getCaretPos(textInput)"
+      (keyup)="getCaretPos(textInput)" class="textarea"></textarea>
+</div>

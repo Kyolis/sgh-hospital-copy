@@ -1,0 +1,65 @@
+<div *ngIf="condition" class="headline-section">
+  <div>
+    {{condition.name}}
+  </div>
+  <div *ngIf="session.isEditView">
+    <button ion-button color="primary" round small icon-only (click)="showUpdateConditionAlert(condition)">
+      <ion-icon name="create"></ion-icon>
+    </button>
+    <button ion-button color="danger" round small icon-only (click)="showDeleteConditionAlert(condition)">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </div>
+</div>
+<hr>
+
+<div class="content-section" *ngIf="(treatments && treatments.length > 0) || session.isEditView">
+  <strong class="section-headline">Treatments</strong>
+  <hr>
+  <ion-list>
+    <div *ngFor="let treatment of treatments">
+      <treatment [treatment]="treatment" [condition]="condition" [infectionId]="infectionId"></treatment>
+      <hr>
+    </div>
+    <div>
+      <button *ngIf="session.isEditView" ion-item style="text-align: center" (click)="showAddTreatmentAlert()">
+        <ion-icon name="add-circle" color="primary"></ion-icon>
+      </button>
+    </div>
+  </ion-list>
+</div>
+
+<div
+  *ngIf="(condition.comment && condition.comment != '') || session.isEditView">
+  <strong class="section-headline">Overall Treatment Comments</strong>
+  <hr>
+  <div [ngClass]="{'sub-section': !session.isEditView}">
+    <edit-text
+      [editMode]="session.isEditView" [editText]="condition.comment"
+      [editTextSettings]="editTextSettings" (debouncedTextChange)="commentChanged($event)"></edit-text>
+  </div>
+</div>
+
+<div
+  *ngIf="(condition.laboratoryTesting && condition.laboratoryTesting != '') || session.isEditView">
+  <strong class="section-headline">Laboratory Testing</strong>
+  <hr>
+  <div [ngClass]="{'sub-section': !session.isEditView}">
+    <edit-text
+      [editMode]="session.isEditView" [editText]="condition.laboratoryTesting"
+      [editTextSettings]="editTextSettings" (debouncedTextChange)="laboratoryTestingChanged($event)"></edit-text>
+  </div>
+</div>
+
+<div
+  *ngIf="(condition.additionalInformation && condition.additionalInformation != '') || session.isEditView">
+  <strong class="section-headline">Additional Information</strong>
+  <hr>
+  <div [ngClass]="{'sub-section': !session.isEditView}">
+    <edit-text
+      [editMode]="session.isEditView" [editText]="condition.additionalInformation"
+      [editTextSettings]="editTextSettings" (debouncedTextChange)="additionalInformationChanged($event)"></edit-text>
+  </div>
+</div>
+
+

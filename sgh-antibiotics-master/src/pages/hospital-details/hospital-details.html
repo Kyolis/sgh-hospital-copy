@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{hospital?.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <h1 class="custom-label">Name</h1>
+  <ion-item id="hospitalName">
+    {{hospital?.name}}
+    <button id="editNameBtn" ion-button color="primary" icon-only small round
+            (click)="editName()">
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-item>
+
+  <div>
+    <h1 class="custom-label">Released Database Versions</h1>
+    <ion-list>
+      <ion-item *ngFor="let release of hospital?.releases; let i = index;"
+                [ngClass]="{'selectedRelease': release === selectedRelease}">
+        <div class="flex-container">
+          <span class="left">
+            ({{i+1}})
+          </span>
+          <span class="middle">
+            {{release.timestamp | date:'full'}}
+            <div *ngIf="release.comments">Comments: {{release.comments}}</div>
+            <div>State:
+              <span *ngIf="release.state == 'TODO'" style="color:slategrey"><ion-icon name="document">  {{release.state}}</ion-icon></span>
+              <span *ngIf="release.state == 'IN_PROGRESS'" style="color:mediumblue"><ion-icon name="sync">  {{release.state}}</ion-icon></span>
+              <span *ngIf="release.state == 'DONE'" style="color:forestgreen"><ion-icon
+                name="checkmark-circle"></ion-icon>  {{release.state}}</span>
+              <span *ngIf="release.state == 'FAILED' || release.state == 'DELETE_FAILED'" style="color:red"><ion-icon
+                name="close-circle"></ion-icon>  {{release.state}}</span>
+              <span *ngIf="release.state == 'DELETE' || release.state == 'DELETING'" style="color:orange"><ion-icon
+                name="trash"></ion-icon>  {{release.state}}</span>
+            </div>
+          </span>
+          <span class="right">
+            <button ion-button small *ngIf="release.state == 'DONE' && release !== selectedRelease"
+                    (click)="setLiveDb(release, i)" [disabled]="isInProgress">Deploy</button>
+            <span *ngIf="release === selectedRelease"><i>Deployed</i></span>
+
+            <button class="delete-btn" ion-button small color="danger"
+                    *ngIf="release.state === 'DONE' && release !== selectedRelease"
+                    (click)="deleteRelease(release, i)">
+              <ion-icon name="trash"></ion-icon>
+              Delete
+            </button>
+          </span>
+        </div>
+      </ion-item>
+    </ion-list>
+    <button [disabled]="isInProgress" ion-item style="text-align: center"
+            (click)="showAddReleaseModal()">
+      <ion-icon name="add-circle" color="primary"></ion-icon>
+    </button>
+  </div>
+</ion-content>

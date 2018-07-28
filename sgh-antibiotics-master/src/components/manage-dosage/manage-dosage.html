@@ -1,0 +1,72 @@
+<ion-header xmlns:size="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>Dosage Management</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="manage-headline">Dosage type</div>
+  <ion-list radio-group [(ngModel)]="dosage.type">
+
+    <ion-item>
+      <ion-label>Greater <i> > </i></ion-label>
+      <ion-radio value="{{dosageType.GREATER}}"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Range <i> (from, to] </i></ion-label>
+      <ion-radio value="{{dosageType.FROM_TO}}"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Less or equal <i> <= </i></ion-label>
+      <ion-radio value="{{dosageType.LESSER_OR_EQUAL}}"></ion-radio>
+    </ion-item>
+
+  </ion-list>
+  <ion-note *ngIf="dosage.type == dosageType.FROM_TO">
+    <strong>Note: Lower values are exclusive while upper values are inclusive.</strong>
+  </ion-note>
+
+  <div style="margin-top: 15px" class="manage-headline">Dosage limits</div>
+  <ion-list class="dosage-input-container">
+    <ion-item *ngIf="dosage.type == dosageType.GREATER">
+      <ion-label floating>Greater value</ion-label>
+      <ion-input [(ngModel)]="dosage.clcr" type="number" placeholder=">"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="dosage.type == dosageType.FROM_TO">
+      <ion-label floating>From value</ion-label>
+      <ion-input [(ngModel)]="dosage.clcrLow" type="number" placeholder="from"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="dosage.type == dosageType.FROM_TO">
+      <ion-label floating>To value</ion-label>
+      <ion-input [(ngModel)]="dosage.clcrHigh" type="number" placeholder="to"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="dosage.type == dosageType.LESSER_OR_EQUAL">
+      <ion-label floating>Lesser or equal value</ion-label>
+      <ion-input [(ngModel)]="dosage.clcr" type="number" placeholder="<="></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="manage-headline">Dosage information</div>
+  <ion-item>
+    <ion-input [(ngModel)]="dosage.value" placeholder="Dosage information text"></ion-input>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer>
+  <div class="button-container">
+    <button class="inline-button" color="danger" ion-button (click)="dismiss()">Cancel</button>
+    <button class="inline-button" ion-button icon-start (click)="save()">
+      <ion-icon name="checkmark"></ion-icon>
+      Save
+    </button>
+  </div>
+</ion-footer>

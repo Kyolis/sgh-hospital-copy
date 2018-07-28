@@ -1,0 +1,25 @@
+<!--
+  Generated template for the UserManagementPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>User Management</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="searchTerms" [showCancelButton]="shouldShowCancel">
+  </ion-searchbar>
+  <ion-list>
+
+    <button ion-item *ngFor="let user of users | filterUsersByEmail : searchTerms" (click)="openUserDetails(user)">
+        {{user.email}}
+    </button>
+  </ion-list>
+</ion-content>

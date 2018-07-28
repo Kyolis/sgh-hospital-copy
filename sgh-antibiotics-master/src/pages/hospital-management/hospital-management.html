@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Hospital Management</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="searchTerm" [showCancelButton]="shouldShowCancel">
+  </ion-searchbar>
+  <ion-list>
+    <ion-item class="flex-container" *ngFor="let hospital of hospitals | filterHospitalsByName : searchTerm">
+      <span class="clickable flex-left" (click)="openHospitalDetails(hospital.id)">{{hospital.name}}</span>
+      <button ion-button color="danger" round (click)="deleteHospital(hospital)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+      <span *ngIf="hospital.delete == 'DELETE' || hospital.delete == 'DELETING'">DELETING</span>
+    </ion-item>
+    <button ion-item style="text-align: center" (click)="showAddHospitalModal()">
+      <ion-icon name="add-circle" color="primary"></ion-icon>
+    </button>
+  </ion-list>
+</ion-content>

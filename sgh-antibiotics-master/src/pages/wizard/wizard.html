@@ -1,0 +1,99 @@
+<ion-header no-border>
+  <ion-navbar hideBackButton="true">
+    <ion-title>Setup</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="centered" *ngIf="!proceed">
+    <h2 class="slide-title">Welcome to the <br><span id="appTitle">Antimicrobials Dispensary App</span></h2>
+    <br>
+
+    <h6 class="sub-headline">Please select your Hospital to continue.</h6>
+    <ion-list>
+      <ion-item>
+        <ion-label>Hospital</ion-label>
+        <ion-select   interface="action-sheet" [(ngModel)]="selectedHospital" (ionChange)="Next()">
+          <ion-option ngClass="hospitals" *ngFor="let hospital of hospitals | async" value="{{ hospital.id }}">{{ hospital.name }}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button icon-right round small outline block [disabled]="!selectedHospital" (click)="Next()"
+            class="nav-button">
+      Continue
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </div>
+
+  <div class="centered" *ngIf="proceed">
+    <h2 class="slide-title">Ready to get started?</h2>
+
+    <ion-item icon-left class="centered" (click)="toggleLoginView()">
+      <ion-icon [name]="isLoginExpanded ? 'arrow-dropup' : 'arrow-dropdown'"></ion-icon>
+      <strong>Login</strong>
+    </ion-item>
+    <div *ngIf="isLoginExpanded" class="centered">
+      <form [formGroup]="loginForm">
+        <ion-item>
+          <ion-label stacked>E-Mail</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <button class="nav-button" ion-button icon-right round medium (click)="login()">Login
+          <ion-icon name="log-in"></ion-icon>
+        </button>
+        <button class="nav-button" ion-button icon-right round medium (click)="resetPasswordConfirmation()" color="danger">Reset Password
+          <ion-icon name="help-circle"></ion-icon>
+        </button>
+      </form>
+    </div>
+
+    <ion-item icon-left class="centered" (click)="toggleRegisterView()">
+      <ion-icon [name]="isRegisterExpanded ? 'arrow-dropup' : 'arrow-dropdown'"></ion-icon>
+      <strong>Register</strong>
+    </ion-item>
+    <div *ngIf="isRegisterExpanded" class="centered">
+      <form [formGroup]="registrationForm">
+        <ion-item>
+          <ion-label stacked>E-Mail</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Repeat Password</ion-label>
+          <ion-input formControlName="confirmPassword" type="password"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="registrationForm.controls.confirmPassword.errors?.MatchPassword">
+          <p class="alert-input">Passwords do not match</p>
+        </ion-item>
+        <button [disabled]="registrationForm.controls.confirmPassword.errors || registrationForm.controls.email.errors"
+                class="nav-button" ion-button icon-right round medium (click)="register()">Register
+          <ion-icon name="log-in"></ion-icon>
+        </button>
+      </form>
+    </div>
+
+    <button class="nav-button" ion-button icon-left round small outline block (click)="Back()">
+      <ion-icon name="arrow-back"></ion-icon>
+      Go back
+    </button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons style="text-align: center">
+      <button ion-button clear (click)="showAbout()" class="aboutButton">
+        About
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

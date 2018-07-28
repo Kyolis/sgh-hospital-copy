@@ -1,0 +1,55 @@
+dosage {
+  .dosage-headline {
+    font-size: 120%;
+  }
+
+  .dosage-value {
+    font-size: 110%;
+    color: #999999;
+    font-weight: bold;
+  }
+
+  .dosage{
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+
+  .add-dosage {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    text-align: center;
+  }
+
+  .dosage-grey-background {
+    background-color: #f4f4f4;
+  }
+
+  #searchInput{
+    width:65%;
+    display: inline-block;
+    background-color: white;
+    float: left;
+
+    .searchbar-search-icon {
+      visibility: hidden;
+    }
+  }
+
+  #calculatorShortcut{
+    float: right;
+    display: inline-block;
+  }
+
+  .button-clear.button-clear {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: cornflowerblue;
+  }
+
+  .icon-button-container {
+    display: inline-block;
+    float: right;
+    margin: 0;
+  }
+}

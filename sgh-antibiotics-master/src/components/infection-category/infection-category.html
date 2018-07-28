@@ -1,0 +1,41 @@
+<ion-item *ngIf="(infections && infections.length > 0) || (searchTerms.length == 0) || (infections.length > 0)">
+  <span>
+    <div (click)="onInfectionCategoryClick()" style="display: inline-block;">
+      <!--name group-->
+      <h2>
+        <ion-icon [name]="expanded ? 'arrow-dropup' : 'arrow-dropdown'"></ion-icon>
+        <strong *ngIf="!infectionCategory.isMiscellaneous">{{infectionCategory.name}}</strong>
+        <i *ngIf="infectionCategory.isMiscellaneous">{{infectionCategory.name}}</i>
+      </h2>
+    </div>
+    <div *ngIf="session.isEditView && !infectionCategory.isMiscellaneous" style="display: inline-block; float: right; margin: 0;" item-end>
+      <button ion-button color="primary" round (click)="showEditInfectionCategoryAlert(infectionCategory)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button color="danger" round (click)="showDeleteInfectionCategoryAlert(infectionCategory)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </div>
+  </span>
+  <div *ngIf="expanded">
+    <ion-list text-wrap>
+      <!--name items-->
+      <div *ngFor="let infection of infections" class="infection-item">
+        <button ion-item (click)="onInfectionClick(infection)" style="flex-grow: 1">
+          {{infection.name}}
+        </button>
+        <div *ngIf="session.isEditView">
+          <button ion-button color="primary" round small icon-only (click)="showEditInfectionAlert(infection)">
+            <ion-icon name="create"></ion-icon>
+          </button>
+          <button ion-button color="danger" round small icon-only (click)="showDeleteInfectionAlert(infection)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </div>
+      </div>
+      <button *ngIf="session.isEditView" ion-item style="text-align: center" (click)="showAddInfectionAlert(infectionCategory)">
+        <ion-icon name="add-circle" color="primary"></ion-icon>
+      </button>
+    </ion-list>
+  </div>
+</ion-item>

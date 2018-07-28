@@ -1,0 +1,124 @@
+<div *ngIf="administrationInfo">
+  <div class="headline-section">
+    <div class="truncate">
+      {{administrationInfo.administration}}
+    </div>
+    <div *ngIf="session.isEditView">
+      <button ion-button color="primary" round small icon-only (click)="showUpdateAdminInfoAlert(administrationInfo)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button color="danger" round small icon-only (click)="showDeleteAdminInfoAlert(administrationInfo)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </div>
+  </div>
+  <hr>
+
+  <div
+    *ngIf="(administrationInfo.comments && administrationInfo.comments != '') || session.isEditView"
+    class="content-section">
+    <strong class="section-headline">Comments</strong>
+    <hr>
+    <div [ngClass]="{'comment-section': !session.isEditView}">
+      <edit-text
+        [editMode]="session.isEditView" [editText]="administrationInfo.comments"
+        [editTextSettings]="editTextSettings" (debouncedTextChange)="commentsChanged($event)"></edit-text>
+    </div>
+  </div>
+
+  <div class="content-section"
+    *ngIf="(administrationInfo.usualAdultDosage && administrationInfo.usualAdultDosage != '') || session.isEditView">
+    <strong class="section-headline">Usual adult dosage</strong>
+    <hr>
+    <div [ngClass]="{'sub-section': !session.isEditView}">
+      <edit-text
+        [editMode]="session.isEditView" [editText]="administrationInfo.usualAdultDosage"
+        [editTextSettings]="editTextSettings" (debouncedTextChange)="usualAdultDosageChanged($event)"></edit-text>
+    </div>
+  </div>
+
+  <div class="button-container" *ngIf="(administrationInfo.monitoringParameters && administrationInfo.monitoringParameters != '') ||
+    (administrationInfo.adverseReactions && administrationInfo.adverseReactions != '') ||
+    session.isEditView">
+    <button *ngIf="(administrationInfo.monitoringParameters && administrationInfo.monitoringParameters != '') || session.isEditView"
+            class="inline-button" ion-button outline (click)="showMonitoringParameters()">Monitoring Parameters
+    </button>
+    <button
+      *ngIf="(administrationInfo.adverseReactions && administrationInfo.adverseReactions != '') || session.isEditView"
+      class="inline-button" ion-button outline (click)="showAdverseReactions()">Adverse reactions
+    </button>
+  </div>
+
+  <div *ngIf="administrationInfo.haemodialysis && administrationInfo.haemodialysis != '' ||
+    administrationInfo.crrt && administrationInfo.crrt != '' ||
+    administrationInfo.peritonealDialysis && administrationInfo.peritonealDialysis != '' ||
+    administrationInfo.dosages && administrationInfo.dosages.length > 0 || session.isEditView" class="content-section">
+    <strong class="section-headline">Renal Dose Adjustment</strong>
+    <hr>
+    <div
+      *ngIf="administrationInfo.dosages && administrationInfo.dosages != administrationInfo.dosages.length > 0 || session.isEditView"
+      style="margin-top: 15px">
+      <dosage [administrationInfo]="administrationInfo" [editMode]="session.isEditView"
+              [antibioticId]="antibioticId"></dosage>
+    </div>
+    <div *ngIf="(administrationInfo.haemodialysis && administrationInfo.haemodialysis != '') || session.isEditView">
+      <strong class="sub-section-headline">Haemodialysis</strong><br>
+      <div [ngClass]="{'sub-section': !session.isEditView}">
+        <edit-text
+          [editMode]="session.isEditView" [editText]="administrationInfo.haemodialysis"
+          [editTextSettings]="editTextSettings" (debouncedTextChange)="haemodialysisChanged($event)"></edit-text>
+      </div>
+    </div>
+    <div
+      *ngIf="(administrationInfo.peritonealDialysis && administrationInfo.peritonealDialysis != '') || session.isEditView">
+      <strong class="sub-section-headline">Peritoneal Dialysis</strong><br>
+      <div [ngClass]="{'sub-section': !session.isEditView}">
+        <edit-text
+          [editMode]="session.isEditView" [editText]="administrationInfo.peritonealDialysis"
+          [editTextSettings]="editTextSettings" (debouncedTextChange)="peritonealDialysisChanged($event)"></edit-text>
+      </div>
+    </div>
+    <div *ngIf="(administrationInfo.crrt && administrationInfo.crrt != '') || session.isEditView">
+      <strong class="sub-section-headline">CRRT</strong><br>
+      <div [ngClass]="{'sub-section': !session.isEditView}">
+        <edit-text
+          [editMode]="session.isEditView" [editText]="administrationInfo.crrt"
+          [editTextSettings]="editTextSettings" (debouncedTextChange)="crrtChanged($event)"></edit-text>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="(administrationInfo.hepaticFailureDosages && administrationInfo.hepaticFailureDosages.length > 0) || session.isEditView"
+    class="content-section">
+    <strong class="section-headline">Hepatic Failure</strong>
+    <hr>
+    <div style="margin-top: 15px">
+      <hepatic-failure-dosage [administrationInfo]="administrationInfo" [editMode]="session.isEditView"
+              [antibioticId]="antibioticId"></hepatic-failure-dosage>
+    </div>
+  </div>
+
+  <div
+    *ngIf="(administrationInfo.pregnancy && administrationInfo.pregnancy != '') || session.isEditView"
+    class="content-section">
+    <strong class="section-headline">Pregnancy</strong>
+    <hr>
+    <div [ngClass]="{'sub-section': !session.isEditView}">
+      <edit-text
+        [editMode]="session.isEditView" [editText]="administrationInfo.pregnancy"
+        [editTextSettings]="editTextSettings" (debouncedTextChange)="pregnancyChanged($event)"></edit-text>
+    </div>
+  </div>
+
+  <div *ngIf="references && references.length > 0" class="content-section">
+    <strong class="section-headline" style="margin-bottom: 15px">Dosage by Indication</strong>
+    <hr>
+    <div *ngFor="let reference of references">
+      <button ion-button color="secondary" outline text-wrap
+      (click)="showInfectionDetailPage(reference)" class="ref-button">
+          {{reference.infection.name}}, {{reference.condition.name}}, {{reference.treatment.header}}
+      </button>
+    </div>
+  </div>
+</div>

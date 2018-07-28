@@ -1,0 +1,86 @@
+// http://ionicframework.com/docs/theming/
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.alertButtonCSS {
+  button.alert-button.alertDanger {
+    color: red;
+  }
+}
+
+.navMenu {
+  @media screen and (min-width: 992px) {
+    //max-width: 340px !important;
+  }
+
+  .truncate {
+    max-width: 95%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .flex-container {
+    display: flex;
+    align-content: center;
+  }
+
+  .flex-left {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0 0 0 2px;
+    color: color($colors, light-dark);
+  }
+
+  #hospitalIcon {
+    font-weight: 900;
+  }
+
+  .flex-right {
+    margin-left: 8px;
+  }
+
+  .sectionHeader {
+    margin-bottom: 0;
+    margin-left: 3%;
+  }
+
+  #settings{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.toolbar-item {
+  display: inline-block;
+}
+
+.inline-button {
+  flex-grow: 1;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}

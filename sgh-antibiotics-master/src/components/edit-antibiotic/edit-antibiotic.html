@@ -1,0 +1,35 @@
+<ion-header xmlns:size="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>Edit Antimicrobial</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item *ngIf="antibioticGroups">
+    <ion-label>Antimicrobial Group</ion-label>
+    <ion-select [(ngModel)]="selectedAntibioticGroupId">
+      <ion-option value="miscellaneous">Miscellaneous</ion-option>
+      <ion-option *ngFor="let antibioticGroup of antibioticGroups" value="{{antibioticGroup._id}}">
+        {{antibioticGroup.groupName}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Antimicrobial name</ion-label>
+    <ion-input [(ngModel)]="antibioticName"></ion-input>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <div class="button-container">
+    <button class="inline-button" color="danger" ion-button (click)="dismiss()">Cancel</button>
+    <button class="inline-button" ion-button icon-start (click)="save()"
+            [disabled]="selectedAntibioticGroupId === '' || antibioticName === ''">
+      <ion-icon name="checkmark"></ion-icon>
+      Save
+    </button>
+  </div>
+</ion-footer>

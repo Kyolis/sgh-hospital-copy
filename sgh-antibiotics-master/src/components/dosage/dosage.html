@@ -1,0 +1,41 @@
+<div *ngIf="dosages || session.isEditView" style="display: flex; flex-direction: column">
+  <div *ngIf="!session.isEditView">
+    <ion-searchbar id="searchInput" [(ngModel)]="searchInput" type="number" placeholder="Enter CrCl"></ion-searchbar>
+    <ion-buttons end id="calculatorShortcut">
+      <button ion-button icon-only outline clear (click)="showCalculator()">
+        <ion-icon name="calculator"></ion-icon>
+      </button>
+    </ion-buttons>
+  </div>
+  <div *ngFor="let dosage of dosages | filterDosagesByClcr: searchInput : session.isEditView; index as i" class="dosage"
+       [ngClass]="{'dosage-grey-background': i % 2 == 0}">
+    <div style="display: inline-block">
+      <div *ngIf="dosage.type == dosageType.GREATER">
+        <strong class="dosage-headline">Clcr > {{dosage.clcr}} mL/min</strong><br>
+      </div>
+      <div *ngIf="dosage.type == dosageType.FROM_TO">
+        <strong class="dosage-headline">Clcr {{dosage.clcrLow}} - {{dosage.clcrHigh}} mL/min</strong><br>
+      </div>
+      <div *ngIf="dosage.type == dosageType.LESSER_OR_EQUAL">
+        <strong class="dosage-headline">Clcr <= {{dosage.clcr}} mL/min</strong><br>
+      </div>
+      <div class="dosage-value">
+        {{dosage.value}}
+      </div>
+    </div>
+    <div *ngIf="session.isEditView" class="icon-button-container" item-end>
+      <button ion-button round small icon-only color="primary" (click)="showAddDosageAlert(dosage)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button round small icon-only color="danger"
+              (click)="showDeleteDosageAlert(administrationInfo.dosages.indexOf(dosage))">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </div>
+  </div>
+  <button *ngIf="session.isEditView" ion-item class="add-dosage"
+          [ngClass]="{'dosage-grey-background': dosages && dosages.length % 2 == 0}"
+          (click)="showAddDosageAlert(null)">
+    <ion-icon name="add-circle" color="primary"></ion-icon>
+  </button>
+</div>

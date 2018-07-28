@@ -1,0 +1,71 @@
+<ion-header xmlns:size="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>Treatment Management</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="manage-headline">Antibiotic Reference</div>
+  <ion-item *ngIf="antibiotics">
+    <ion-label>Antibiotic</ion-label>
+    <ion-select [(ngModel)]="selectedAntibioticId">
+      <ion-option *ngFor="let antibiotic of antibiotics" value="{{antibiotic._id}}">
+        {{antibiotic.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="!administrationInfos" text-wrap>
+    To select an administration information please select an antibiotic first.
+  </ion-item>
+  <ion-item *ngIf="administrationInfos && administrationInfos.length == 0" text-wrap>
+    The selected antibiotic does not have any administration information yet.
+  </ion-item>
+  <ion-item *ngIf="administrationInfos && administrationInfos.length > 0" text-wrap>
+    <ion-label>
+      Administration Info
+    </ion-label>
+    <ion-select [(ngModel)]="selectedAdministrationInfoId">
+      <ion-option *ngFor="let adminstrationInfo of administrationInfos" value="{{adminstrationInfo._id}}">
+        {{adminstrationInfo.administration}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+  <div class="manage-headline" style="margin-top: 15px">Type</div>
+  <ion-list radio-group [(ngModel)]="type">
+    <ion-item>
+      <ion-label>None</ion-label>
+      <ion-radio value=""></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Additional (+)</ion-label>
+      <ion-radio value="additional"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Optional (+/-)</ion-label>
+      <ion-radio value="optional"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <div class="manage-headline" style="margin-top: 15px; margin-bottom: 10px">Dosage</div>
+  <ion-item>
+    <ion-label color="primary" floating>Dosage</ion-label>
+    <ion-input [(ngModel)]="adminInfoTreatment.dosage"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="danger" floating>Comment</ion-label>
+    <ion-input [(ngModel)]="adminInfoTreatment.comment"></ion-input>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <div class="button-container">
+    <button class="inline-button" color="danger" ion-button (click)="dismiss()">Cancel</button>
+    <button class="inline-button" ion-button icon-start (click)="save()"
+            [disabled]="selectedAntibioticId === '' || selectedAdministrationInfoId === ''">
+      <ion-icon name="checkmark"></ion-icon>
+      Save
+    </button>
+  </div>
+</ion-footer>

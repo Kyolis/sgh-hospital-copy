@@ -1,0 +1,49 @@
+hepatic-failure-dosage {
+  .dosage-headline {
+    font-size: 120%;
+  }
+
+  .dosage-value {
+    font-size: 110%;
+    color: #999999;
+    font-weight: bold;
+  }
+
+  .dosage{
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+
+  .add-dosage {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    text-align: center;
+  }
+
+  .dosage-grey-background {
+    background-color: #f4f4f4;
+  }
+
+  #searchInput{
+    width:50%;
+    display: inline-block;
+    background-color: white;
+    float: left;
+  }
+
+  #calculatorShortcut{
+    float: right;
+    display: inline-block;
+  }
+
+  .searchResult {
+    background-color: #80aaff;
+    color: white;
+  }
+
+  .icon-button-container {
+    display: inline-block;
+    float: right;
+    margin: 0;
+  }
+}
